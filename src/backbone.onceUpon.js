@@ -92,23 +92,26 @@ Once.unbindEntityEvents = function(target, entity, bindings) {
  *
  */
 
-const OnceUpon = {
+Backbone.OnceUpon = {
+
   extend(View) {
-    let originalDelegateEvents = View.prototype.delegateEvents;
-    let originalUndelegateEvents = View.prototype.undelegateEvents;
 
-    View.prototype.delegateEvents = function() {
-      originalDelegateEvents.apply(this, arguments);
-      bindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
-    };
+    return View.extend({
 
-    View.prototype.undelegateEvents = function() {
-      unbindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
-      originalUndelegateEvents.apply(this, arguments);
-    };
+      delegateEvents() {
+        View.prototype.originalDelegateEvents.apply(this, arguments);
+        bindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
+      },
+
+      undelegateEvents() {
+        View.prototype.unbindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
+        View.prototype.originalUndelegateEvents.apply(this, arguments);
+      }
+
+    });
+
   }
+
 };
 
-Backbone.OnceUpon = OnceUpon;
-
-export default OnceUpon;
+export default Backbone.OnceUpon;

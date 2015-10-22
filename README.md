@@ -2,13 +2,17 @@
 
 Bind handlers to execute only once during the lifecycle of a Backbone View
 
+This usually needed for initialization logic that makes sense only after a certain stage
+during the lifecycle of a Backbone.View. And that is usually the render stage.
+
+
 Example:
 
 ```javascript
 
-Backbone.OnceUpon.extend(Backbone.View);
+FairyTaleView = Backbone.OnceUpon.extend(Backbone.View);
 
-MyView = Backbone.View.extend({
+BeastView = FairyTaleView.extend({
   
   onceUponEvents: {
     "render": "onceRender"

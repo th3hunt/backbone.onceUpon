@@ -93,26 +93,28 @@
    *
    */
 
-  var OnceUpon = {
+  Backbone.OnceUpon = {
+
     extend: function extend(View) {
-      var originalDelegateEvents = View.prototype.delegateEvents;
-      var originalUndelegateEvents = View.prototype.undelegateEvents;
 
-      View.prototype.delegateEvents = function () {
-        originalDelegateEvents.apply(this, arguments);
-        bindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
-      };
+      return View.extend({
 
-      View.prototype.undelegateEvents = function () {
-        unbindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
-        originalUndelegateEvents.apply(this, arguments);
-      };
+        delegateEvents: function delegateEvents() {
+          View.prototype.originalDelegateEvents.apply(this, arguments);
+          bindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
+        },
+
+        undelegateEvents: function undelegateEvents() {
+          View.prototype.unbindEntityEvents(this, this, getOption(this, 'onceUponEvents'));
+          View.prototype.originalUndelegateEvents.apply(this, arguments);
+        }
+
+      });
     }
+
   };
 
-  Backbone.OnceUpon = OnceUpon;
-
-  var backbone_onceUpon = OnceUpon;
+  var backbone_onceUpon = Backbone.OnceUpon;
 
   return backbone_onceUpon;
 });
