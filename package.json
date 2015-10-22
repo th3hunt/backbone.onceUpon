@@ -1,8 +1,8 @@
 {
-  "name": "backbone-once",
+  "name": "backbone.onceUpon",
   "version": "0.0.1",
-  "description": "",
-  "main": "dist/backbone-once.js",
+  "description": "Bind handlers to execute only once during the lifecycle of a Backbone View",
+  "main": "dist/backbone.onceUpon.js",
   "scripts": {
     "test": "gulp",
     "test-browser": "gulp test-browser",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/th3hunt/backbone-once.git"
+    "url": "https://github.com/th3hunt/backbone.onceUpon.git"
   },
   "keywords": [],
   "author": "Stratos Pavlakis <pavlakis.stratos@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/th3hunt/backbone-once/issues"
+    "url": "https://github.com/th3hunt/backbone.onceUpon/issues"
   },
-  "homepage": "https://github.com/th3hunt/backbone-once",
+  "homepage": "https://github.com/th3hunt/backbone.onceUpon",
   "devDependencies": {
     "babel-core": "^5.2.17",
     "babel-eslint": "^4.0.5",
@@ -54,12 +54,15 @@
     "watchify": "^3.3.1"
   },
   "babelBoilerplateOptions": {
-    "entryFileName": "backbone-once",
-    "mainVarName": "BackboneOnce",
+    "entryFileName": "backbone.onceUpon",
+    "mainVarName": "OnceUpon",
     "mochaGlobals": [
       "stub",
       "spy",
       "expect"
     ]
+  },
+  "dependencies": {
+    "backbone": "^1.2.3"
   }
 }
